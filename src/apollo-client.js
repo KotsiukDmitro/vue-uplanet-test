@@ -3,9 +3,12 @@ import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client/core';
 
 const username = 'admin'
 const password = 'qweasd123'
+const graphqlUri = import.meta.env.VITE_BASE_URL
+
 
 const httpLink = new HttpLink({
-    uri: 'https://api-urancompany.devserver.app/jsonapi',
+    uri: graphqlUri,
+    useGETForQueries: true,
     headers: {
       Authorization: `Basic ${btoa(`${username}:${password}`)}`
     },
