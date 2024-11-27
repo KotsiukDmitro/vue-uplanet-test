@@ -1,11 +1,12 @@
 <script setup>
 import gql from 'graphql-tag'
-import { useQuery } from '@vue/apollo-composable'
-import { watch } from 'vue';
+import { useQuery, provideApolloClient } from '@vue/apollo-composable'
+import apolloClient from './apollo-client'
+import { watch } from 'vue'
 
+provideApolloClient(apolloClient)
 
-
-const {result, loading, error } = useQuery(gql`
+const { result, loading, error } = useQuery(gql`
   query {
     blockContentWhoWeAre {
       field_number_projects
@@ -15,14 +16,11 @@ const {result, loading, error } = useQuery(gql`
 `)
 
 
-
-watch(loading, ()=> {
-  if(!loading.value) {
+watch(loading, () => {
+  if (!loading.value) {
     console.log(result.value)
   }
-  
 })
-
 
 // const aboutUs = gql`
 //         query {
@@ -35,8 +33,6 @@ watch(loading, ()=> {
 //     `
 // console.log(useQuery(aboutUs))
 // const {result, loading, error} = useQuery(aboutUs)
-
-
 </script>
 
 <template>
@@ -44,18 +40,18 @@ watch(loading, ()=> {
   <div>
     <p v-if="loading" class="text-center text-green-500 text-2xl">Загрузка...</p>
     <p v-if="error" class="text-red-500 text-center">Error: {{ error.message }}</p>
-    <div v-else class="ml-10">
-         {{ result }}
+    <div v-if="result" class="ml-10">
+      {{ result }}
       <!-- <p>
-        number of projects: <strong>{{ result.field_number_projects }}</strong>
+        number of projects: <strong>{{ result.blockContentWhoWeAre.field_number_projects }}</strong>
       </p>
       <p>
         number of employees:
-        <strong>{{ result.field_number_specialists }}</strong>
+        <strong>{{ result.blockContentWhoWeAre.field_number_specialists }}</strong>
       </p> -->
     </div>
-  
-      <!-- <ApolloQuery
+
+    <!-- <ApolloQuery
       :query="gql => gql`
                           query {
                             blockContentWhoWeAre {

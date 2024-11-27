@@ -1,12 +1,12 @@
-// module.exports = {
-//     client: {
-//       service: {
-//         name: 'my-app',
-//         url: 'http://localhost:3000/graphql',
-//       },
-//       includes: [
-//         'src/**/*.vue',
-//         'src/**/*.js',
-//       ],
-//     },
-//   }
+module.exports = {
+    client: {
+      service: {
+        name: 'u-planet',
+        url: import.meta.env.VITE_BASE_URL,
+      },
+      includes: [
+        'src/**/*.vue',
+        'src/**/*.js',
+      ],
+    },
+  }
