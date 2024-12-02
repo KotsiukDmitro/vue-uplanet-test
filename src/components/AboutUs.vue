@@ -7,11 +7,11 @@
     <div v-else-if="content" class="ml-10">
       {{ result }}
       <p>
-        number of projects: <strong>{{ content?.field_number_projects }}</strong>
+        number of projects: <strong>{{ content?.number_projects }}</strong>
       </p>
       <p>
         number of employees:
-        <strong>{{ content?.field_number_specialists }}</strong>
+        <strong>{{ content?.number_specialists }}</strong>
       </p>
     </div>
     <div v-else class="text-red-500 text-center">No result !!!</div>
@@ -35,7 +35,7 @@ const blockContentWhoWeAre = gql`
 `
 
 const content = ref(null)
-const loading = ref(true)
+const loading = ref(false)
 const error = ref(null)
 
 // Функция для выполнения запроса
@@ -52,9 +52,10 @@ const fetchContent = async (path) => {
     // Обновляем данные
     const result = data[0]?.attributes || {}
     content.value = {
-      field_number_projects: result.field_number_projects || 'Не найдено',
-      field_number_specialists: result.field_number_specialists || 'Не найдено',
+      number_projects: result.field_number_projects || 'Не найдено',
+      number_specialists: result.field_number_specialists || 'Не найдено',
     }
+    
   } catch (err) {
     error.value = err.message || 'Ошибка при загрузке данных'
     console.error('Ошибка запроса:', err)

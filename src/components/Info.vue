@@ -2,7 +2,10 @@
 import gql from 'graphql-tag'
 import { useQuery, provideApolloClient } from '@vue/apollo-composable'
 import apolloClient from '../apollo-client'
-import { watch } from 'vue'
+import { watch, ref } from 'vue'
+
+const number_projects = ref()
+const number_specialists = ref()
 
 provideApolloClient(apolloClient)
 
@@ -19,8 +22,14 @@ const { result, loading, error } = useQuery(gql`
 watch(loading, () => {
   if (!loading.value) {
     console.log(result.value)
+    // console.log(result.value[0].attributes.field_number_projects)
+    // console.log(result.value[0].attributes.field_number_specialists)
+
+    number_projects.value = result.value[0].attributes.field_number_projects
+    number_specialists.value = result.value[0].attributes.field_number_specialists
   }
 })
+
 
 </script>
 
@@ -31,13 +40,13 @@ watch(loading, () => {
     <p v-else-if="error" class="text-red-500 text-center">Error: {{ error.message }}</p>
     <div v-else-if="result" class="ml-10">
       {{ result }}
-      <!-- <p>
-        number of projects: <strong>{{ result.blockContentWhoWeAre.field_number_projects }}</strong>
+      <p class="mt-10">
+        number of projects: <strong>{{ number_projects }}</strong>
       </p>
       <p>
         number of employees:
-        <strong>{{ result.blockContentWhoWeAre.field_number_specialists }}</strong>
-      </p> -->     
+        <strong>{{ number_specialists }}</strong>
+      </p> 
     </div>
     <div v-else class="text-red-500 text-center">No result !!!</div>
     <!-- <ApolloQuery
