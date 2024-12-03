@@ -9,15 +9,27 @@ const number_specialists = ref()
 
 provideApolloClient(apolloClient)
 
+// const { result, loading, error } = useQuery(gql`
+//   query {
+//     blockContentWhoWeAre {
+//       field_number_projects
+//       field_number_specialists
+//     }
+//   }
+// `)
+
 const { result, loading, error } = useQuery(gql`
   query {
-    blockContentWhoWeAre {
-      field_number_projects
-      field_number_specialists
+    block_content {
+      who_we_are {
+        blockContentWhoWeAre {
+          field_number_projects
+          field_number_specialists
+        }
+      }
     }
   }
 `)
-
 
 watch(loading, () => {
   if (!loading.value) {
@@ -25,8 +37,8 @@ watch(loading, () => {
     // console.log(result.value[0].attributes.field_number_projects)
     // console.log(result.value[0].attributes.field_number_specialists)
 
-    number_projects.value = result.value[0].attributes.field_number_projects
-    number_specialists.value = result.value[0].attributes.field_number_specialists
+    // number_projects.value = result.value[0].attributes.field_number_projects
+    // number_specialists.value = result.value[0].attributes.field_number_specialists
   }
 })
 
@@ -46,7 +58,7 @@ watch(loading, () => {
       <p>
         number of employees:
         <strong>{{ number_specialists }}</strong>
-      </p> 
+      </p>
     </div>
     <div v-else class="text-red-500 text-center">No result !!!</div>
     <!-- <ApolloQuery
