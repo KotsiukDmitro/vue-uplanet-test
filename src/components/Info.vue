@@ -9,27 +9,37 @@ const number_specialists = ref()
 
 provideApolloClient(apolloClient)
 
+const { result, loading, error } = useQuery(gql`
+  query {
+    blockContentWhoWeAre {
+      field_number_projects
+      field_number_specialists
+    }
+  }
+`)
+
 // const { result, loading, error } = useQuery(gql`
 //   query {
+//     block_content {
+//       who_we_are {
+//         blockContentWhoWeAre {
+//           field_number_projects
+//           field_number_specialists
+//         }
+//       }
+//     }
+//   }
+// `)
+
+// const get_blockContentWhoWeAre = gql`
+//   query blockContentWhoWeAre($path=String!) {
 //     blockContentWhoWeAre {
 //       field_number_projects
 //       field_number_specialists
 //     }
 //   }
-// `)
-
-const { result, loading, error } = useQuery(gql`
-  query {
-    block_content {
-      who_we_are {
-        blockContentWhoWeAre {
-          field_number_projects
-          field_number_specialists
-        }
-      }
-    }
-  }
-`)
+// `
+// const { result, loading, error } = useQuery(get_blockContentWhoWeAre, {path: 'block_content/who_we_are'})
 
 watch(loading, () => {
   if (!loading.value) {
@@ -37,8 +47,8 @@ watch(loading, () => {
     // console.log(result.value[0].attributes.field_number_projects)
     // console.log(result.value[0].attributes.field_number_specialists)
 
-    // number_projects.value = result.value[0].attributes.field_number_projects
-    // number_specialists.value = result.value[0].attributes.field_number_specialists
+    number_projects.value = result.value[0].attributes.field_number_projects
+    number_specialists.value = result.value[0].attributes.field_number_specialists
   }
 })
 

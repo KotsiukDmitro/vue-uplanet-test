@@ -7,6 +7,7 @@
     <router-link to="/" class="cursor">Home</router-link>
     <router-link to="about-us" class="cursor">About Us</router-link>
     <router-link to="info" class="cursor">Info</router-link>
+    <router-link to="rest" class="cursor">Rest</router-link>
     <router-link to="graphql" class="cursor">GraphQL</router-link>
   </div>
 </template>

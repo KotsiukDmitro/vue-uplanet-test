@@ -3,6 +3,7 @@ import Home from '@/components/Home.vue'
 import AboutUs from '@/components/AboutUs.vue'
 import GraphiQLPage from '@/components/GraphiQLPage.vue'
 import Info from '@/components/Info.vue'
+import Rest from '@/components/Rest.vue'
 
 
 const router = createRouter({
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/info',
       name: 'info',
       component: Info,
+    },
+    {
+      path: '/rest',
+      name: 'rest',
+      component: Rest,
     },
     {
       path: '/graphql',
