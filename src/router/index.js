@@ -4,6 +4,7 @@ import AboutUs from '@/components/AboutUs.vue'
 import GraphiQLPage from '@/components/GraphiQLPage.vue'
 import Info from '@/components/Info.vue'
 import Rest from '@/components/Rest.vue'
+import WhomWeServe from '@/components/WhomWeServe.vue'
 
 
 const router = createRouter({
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/rest',
       name: 'rest',
       component: Rest,
+    },
+    {
+      path: '/basic',
+      name: 'basic',
+      component: WhomWeServe,
     },
     {
       path: '/graphql',

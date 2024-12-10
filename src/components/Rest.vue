@@ -52,9 +52,7 @@ watch(loading, () => {
         number of employees:
         <strong>{{ number_specialists || 'не найдено' }}</strong>
       </p>
-      <div>
-        {{ info }}
-      </div>
+      <div v-html="info"></div>
     </div>
     <div v-else class="text-red-500 text-center">No result !!!</div>
   </div>
