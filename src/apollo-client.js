@@ -26,6 +26,7 @@ const graphqlUri = import.meta.env.VITE_BASE_URL
     },
     customFetch: (uri, options) => {
       const decodedUri = uri.replace(/%2F/g, '/');
+      // const decodedUri = uri.replace(/%7B/g, '{').replace(/%7D/g, '}');
       return fetch(decodedUri, options);
     },
   });

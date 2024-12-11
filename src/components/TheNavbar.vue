@@ -9,6 +9,7 @@
     <router-link to="info" class="cursor">Info</router-link>
     <router-link to="rest" class="cursor">Rest</router-link>
     <router-link to="basic" class="cursor">WhomWeServe</router-link>
+    <router-link to="our-work" class="cursor">OurWork</router-link>
     <router-link to="graphql" class="cursor">GraphQL</router-link>
   </div>
 </template>

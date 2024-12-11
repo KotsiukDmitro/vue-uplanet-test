@@ -5,6 +5,7 @@ import GraphiQLPage from '@/components/GraphiQLPage.vue'
 import Info from '@/components/Info.vue'
 import Rest from '@/components/Rest.vue'
 import WhomWeServe from '@/components/WhomWeServe.vue'
+import OurWork from '@/components/OurWork.vue'
 
 
 const router = createRouter({
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/basic',
       name: 'basic',
       component: WhomWeServe,
+    },
+    {
+      path: '/our-work',
+      name: 'our-work',
+      component: OurWork,
     },
     {
       path: '/graphql',
